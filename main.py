@@ -26,12 +26,12 @@ step = 28
 
 def start(update, context):
     name = f"{update.message.from_user.first_name} {update.message.from_user.last_name}"
-    update.message.reply_text(
+    update.message.reply_text(emoji.emojize(
         f"Привет, {name}!\nЯ бот для игры в конфетки. Поиграем?"
-        f"\n\n/play         - играть"
-        f"\n/settings  - настройки игры"
-        f"\n/rules       - правила игры"
-        f"\n/close       - закрыть",
+        f"\n\n/play            :video_game:  играть"
+        f"\n/settings     :gear:  настройки игры"
+        f"\n/rules          :scroll:  правила игры"
+        f"\n/close          :cross_mark:  закрыть"),
         reply_markup=markup
     )
 
@@ -59,13 +59,13 @@ def set_settings(update, context):
 
 
 def rules(update, context):
-    update.message.reply_text(
+    update.message.reply_text(emoji.emojize(
         "На столе лежат конфеты."
         "\nИграют два игрока делая ход друг после друга. "
-        "\nПервый ход определяется жеребьёвкой. "
-        "\nПеред началом игры необходимо определить общее количество конфет на столе и сколько конфет можно забрать за 1 ход."
         "\nВсе конфеты оппонента достаются сделавшему последний ход, он и будет победителем."
-        "\n\n Удачи!")
+        "\n\nПеред началом игры необходимо определить общее количество конфет на столе и сколько конфет можно забрать за 1 ход.  "
+        "\n :gear:  /settings"
+        "\n\n Удачи!"))
 
 
 def play(update, context):
@@ -93,7 +93,7 @@ def play_step(update, context):
                     candies -= y
                     update.message.reply_text(emoji.emojize(f'Осталось {candies} конфет :candy:'))
                     if candies <= step:
-                        update.message.reply_text("Игра окончена, ты победил/а!", reply_markup=markup)
+                        update.message.reply_text(emoji.emojize("Игра окончена, ты победил/а!"), reply_markup=markup)
                         return ConversationHandler.END
                 else:
                     y = random.randint(1, step)
