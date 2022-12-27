@@ -1,3 +1,5 @@
+# выполнено совместно с Рябовым Андреем
+
 import logging
 import emoji
 import token_bot
